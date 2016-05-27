@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Product;
 use App\Unit;
+use App\Stock;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -25,17 +26,42 @@ class ProductController extends Controller
     }
     function store(Request $request)
     {
+        $form = $request->all();
+        $form['name'] = ucfirst($request->name);
+        $valid = validator($form,[
+            'name' => 'required|unique:products|max:255',
+        ]);
+        
+        if($valid->fails()){
+            $units= Unit::where('user_id', Auth::user()->user_id)->orderBy('name','ASC')->get();
+            return redirect('/products/create')->withInput()->with('units', $units)->withErrors($valid);
+        }
+
         $product = new Product;
-        $product->name = $request->name;
+        $product->name = $form['name'];
         $product->unit_id = $request->unit_id;
         $product->user_id = Auth::user()->user_id;
         $product->save();
 
         return Redirect::to('products');
     }
-    function update($id, Request $request) {
+    
+    function update($id, Request $request)
+    {
+        $form = $request->all();
+        $form['name'] = ucfirst($request->name);
+        
+        $valid = validator($form,[
+            'name' => 'required|unique:products|max:255',
+        ]);
+        
+        if($valid->fails()){
+            $units= Unit::where('user_id', Auth::user()->user_id)->orderBy('name','ASC')->get();
+            return redirect('/products/'.$id.'/edit')->withInput()->withErrors($valid)->with('units', $units);;            
+        }
+ 
         $product = Product::find($id);
-        $product->name = $request->name;
+        $product->name = $form['name'];
         $product->unit_id = $request->unit_id;
         $product->save();
 
@@ -53,6 +79,7 @@ class ProductController extends Controller
         return view('products.show')->with('product', $product);
     }
     function delete($id) {
+        $stock = Stock::where('product_id',$id)->where('user_id', Auth::user()->user_id)->delete();
         $product = Product::find($id);
         $product->delete();
 

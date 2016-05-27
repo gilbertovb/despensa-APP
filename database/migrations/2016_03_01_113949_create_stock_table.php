@@ -14,7 +14,7 @@ class CreateStockTable extends Migration
     {
         Schema::create('stock', function (Blueprint $table) {
             $table->increments('stock_id');
-            $table->integer('product_id')->references('product_id')->on('products');
+            $table->integer('product_id')->references('product_id')->on('products')->onDelete('cascade');
             $table->integer('user_id')->references('user_id')->on('users');
             $table->double('min',3,2);
             $table->double('current',3,2);

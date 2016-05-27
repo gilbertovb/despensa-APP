@@ -22,21 +22,43 @@ class UnitController extends Controller
     }
     public function store(Request $request)
     {
+        $form = $request->all();
+        $form['name'] = ucfirst($request->name);
+        $valid = validator($form,[
+            'name' => 'required|unique:units|max:255',
+        ]);
+        
+        if($valid->fails()){
+            return redirect('/units/create')->withErrors($valid)->withInput();
+        }
+        
         $unit = new Unit;
-        $unit->name = $request->name;
+        $unit->name = $form['name'];
         $unit->user_id = Auth::user()->user_id;
         $unit->save();
 
         return Redirect::to('units');
     }
-    function update($id, Request $request) {
+    function update($id, Request $request)
+    {
+        $form = $request->all();
+        $form['name'] = ucfirst($request->name);
+        $valid = validator($form,[
+            'name' => 'required|unique:units|max:255',
+        ]);
+        
+        if($valid->fails()){
+            return redirect('/units/'.$id.'/edit')->withErrors($valid)->withInput();
+        }
         $unit = Unit::find($id);
-        $unit->name = $request->name;
-        $unit->save();
+        $unit->name = $form['name'];
+//        $unit->save();
 
         return Redirect::to('units');
     }
-    function edit($id) {
+    
+    function edit($id)
+    {
         $unit = Unit::find($id);
         
         return view('units.edit')->with('unit', $unit);

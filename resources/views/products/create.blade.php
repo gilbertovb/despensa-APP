@@ -14,7 +14,7 @@
                             <label class="col-md-4 control-label">Nome</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" value="{!! old('name') !!}">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -44,7 +44,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">Adicionar</button>
+                                <input type="submit" class="btn btn-success" value="Adicionar">
                                 <a href="{{ url('/products') }}" class="btn btn-info">Cancelar</a>
                             </div>
                         </div>
