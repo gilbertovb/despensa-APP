@@ -7,6 +7,7 @@ use App\Stock;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Collection;
 
 class StockController extends Controller
 {
@@ -14,33 +15,29 @@ class StockController extends Controller
     {
         $this->middleware('auth');
     }
-    function index() {
-        $stock = Stock::where('user_id', Auth::user()->user_id)->get();
-
+    
+    function index()
+    {
+        $stock = Stock::where('stock.user_id', Auth::user()->user_id)
+                ->join('products','stock.product_id','=','products.product_id')
+                ->orderBy('products.name')
+                ->get();
         return view('stock.list')->with('stock', $stock);
     }
-    function create() {
-//        $stock = Stock::where('user_id', Auth::user()->user_id)->get();
-//        $products = Product::with('unit')->where('user_id', Auth::user()->user_id)->whereNotIn('product_id', $stock)->orderBy('name', 'ASC')->get();
+    
+    function create()
+    {
         $products = Product::with('unit')->where('user_id', Auth::user()->user_id)->whereNotIn('product_id', function($query){
             $query->select('product_id');
             $query->from('stock');
             $query->where('user_id', Auth::user()->user_id);
         })->orderBy('name', 'ASC')->get();
-//dd($products->count());
+
         return view('stock.create')->with('products', $products);
-//        return dd($products);
     }
+    
     function store(Request $request)
     {
-/*        $valid = validator($request->all(),[
-            'mins[]' => 'required|numeric|min:0',
-        ]);
-        
-        if($valid->fails()){
-            return Redirect::to('/stock/create')->withErrors($valid);
-        }
-*/
         foreach ($request->products as $key => $value) {
                 $stock = new Stock;
                 $stock->product_id = $value;
