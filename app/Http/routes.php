@@ -18,7 +18,7 @@
 
 Route::get('/register/verify/{confirmatioCode}','VerifyController@confirm');
 // Migration
-Route::get('/migration/install/{id}','VerifyController@migration_install');
+//Route::get('/migration/install/{id}','VerifyController@migration_install');
 
 /*
 |--------------------------------------------------------------------------
