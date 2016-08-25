@@ -93,7 +93,7 @@
     @yield('content')
     <nav class="navbar navbar-default">
         <div class="container">
-            <div class="navbar-header text-center">
+            <div class="navbar-header text-center" style="width: 100%;">
                 <p><a href="mailto:despensa@despensa.ml">despensa@despensa.ml</a></p>
                 <p><a href="http://insighti.com.br" target="_blank">Insight! Tecnologia</a></p>
             </div>
