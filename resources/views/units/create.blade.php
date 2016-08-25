@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">Cadastro de Unidades</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/units/create') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Nome</label>
+                            <label class="col-md-4 col-xs-4 control-label">Nome</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
 
                                 @if ($errors->has('name'))

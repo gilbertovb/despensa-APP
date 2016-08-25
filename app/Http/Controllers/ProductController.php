@@ -52,7 +52,7 @@ class ProductController extends Controller
         $form['name'] = ucfirst($request->name);
         
         $valid = validator($form,[
-            'name' => 'required|unique:products|max:255',
+            'name' => 'required|unique:products,name,'.$id.',product_id|max:255',
         ]);
         
         if($valid->fails()){

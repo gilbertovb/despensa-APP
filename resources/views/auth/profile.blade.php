@@ -9,7 +9,7 @@ jQuery(function ($) {
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">Perfil</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile') }}">

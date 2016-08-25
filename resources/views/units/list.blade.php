@@ -4,32 +4,29 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">Unidades</div>
-                <a class="btn btn-small btn-success" href="{{ url('/units/create') }}">Adicionar</a>
-
                 <div class="panel-body">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-responsive table-condensed">
                         <thead>
                             <tr>
-                                <td>Nome</td>
-                                <td>Ações</td>
+                                <th class="text-center">Nome</th>
+                                <th class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($units as $key => $value)
                             <tr>
-                                <td>{{ $value->name }}</td>
-
-                                <!-- we will also add show, edit, and delete buttons -->
+                                <td class="text-left">{{ $value->name }}</td>
                                 <td>
-                                    <a class="btn btn-small btn-info" href="{{ URL::to('units/' . $value->unit_id . '/edit') }}">Editar</a>
-                                    <a class="btn btn-small btn-danger" href="{{ URL::to('units/' . $value->unit_id) }}">Apagar</a>
+                                    <a title="Editar" class="btn btn-info" href="{{ URL::to('units/' . $value->unit_id . '/edit') }}"><i class="fa fa-pencil"></i></a>
+                                    <a title="Apagar" class="btn btn-danger" href="{{ URL::to('units/' . $value->unit_id) }}"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                <a class="btn btn-small btn-success" href="{{ url('/units/create') }}">Adicionar</a>
                 </div>
             </div>
         </div>

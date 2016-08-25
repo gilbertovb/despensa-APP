@@ -52,7 +52,7 @@ class UnitController extends Controller
         }
         $unit = Unit::find($id);
         $unit->name = $form['name'];
-//        $unit->save();
+        $unit->save();
 
         return Redirect::to('units');
     }

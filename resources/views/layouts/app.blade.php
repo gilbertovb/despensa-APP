@@ -93,15 +93,9 @@
     @yield('content')
     <nav class="navbar navbar-default">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="mailto:despensa@despensa.ml">
-                    despensa@despensa.ml
-                </a>
-            </div>
-            <div>
-                <a class="navbar-brand navbar-right" href="http://insighti.com.br" target="_blank">
-                    insight! Tecnologia
-                </a>
+            <div class="navbar-header text-center">
+                <p><a href="mailto:despensa@despensa.ml">despensa@despensa.ml</a></p>
+                <p><a href="http://insighti.com.br" target="_blank">Insight! Tecnologia</a></p>
             </div>
         </div>
     </nav>

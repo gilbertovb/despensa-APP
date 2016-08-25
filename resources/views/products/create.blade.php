@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">Cadastro de Produtos</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/products/create') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Nome</label>
+                            <label class="col-md-4 col-xs-4 control-label">Nome</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6">
                                 <input type="text" class="form-control" name="name" value="{!! old('name') !!}">
 
                                 @if ($errors->has('name'))
@@ -25,9 +25,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('unit_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Unidade</label>
+                            <label class="col-md-4 col-xs-4 control-label">Unidade</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6">
                                 <select class="form-control" name="unit_id">
                                 @foreach($units as $key => $value)
                                 <option value="{{ $value->unit_id }}">{{ $value->name }}</option>
