@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="center-block">
-            <div class="panel panel-default">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">OOPS...</div>
 
                 <div class="panel-body">
-                    Esta página não existe.
+                    <h1>Esta página não existe.</h1>
                 </div>
             </div>
         </div>
